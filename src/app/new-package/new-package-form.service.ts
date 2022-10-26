@@ -12,8 +12,6 @@ export class NewPackageFormService {
       lastname: new FormControl('', { nonNullable: true }),
       telNo: new FormControl('', { nonNullable: true }),
       email: new FormControl('', { nonNullable: true })
-    }, {
-      validators: telNoOrEmailRequired
     });
 
     const address = new FormGroup<AddressForm>({
@@ -36,8 +34,6 @@ export class NewPackageFormService {
     form.controls.contact.controls.email.setValidators([Validators.pattern(/^\+?[1-9][0-9]{7,14}$/)]);
     form.controls.contact.controls.telNo.setValidators(Validators.email);
 
-    form.controls.contact.setValidators(telNoOrEmailRequired);
-
     form.controls.address.controls.street.setValidators(Validators.required);
     form.controls.address.controls.postCode.setValidators([Validators.required, postCode]);
     form.controls.address.controls.city.setValidators(Validators.required);
@@ -47,8 +43,6 @@ export class NewPackageFormService {
     form.controls.contact.controls.lastname.updateValueAndValidity();
     form.controls.contact.controls.email.updateValueAndValidity();
     form.controls.contact.controls.telNo.updateValueAndValidity();
-
-    form.controls.contact.updateValueAndValidity();
 
     form.controls.address.controls.street.updateValueAndValidity();
     form.controls.address.controls.postCode.updateValueAndValidity();

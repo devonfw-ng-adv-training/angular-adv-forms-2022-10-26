@@ -15,50 +15,28 @@
                         <div class="form-group">
                           <label for="firstname">First name:</label>
                           <input type="text" class="form-control" id="firstname"
-                                 formControlName="firstname"
-                                 [class.is-invalid]="newPackageForm.controls.contact.controls.firstname.touched && newPackageForm.controls.contact.controls.firstname?.invalid" />
-                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.firstname?.touched && newPackageForm.controls.contact.controls.firstname?.invalid">
-                            {{ newPackageForm.controls.contact.controls.firstname?.errors | errorMessages }}
-                          </div>
+                                 formControlName="firstname" />
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group">
                           <label for="lastname">Last name:</label>
                           <input type="text" class="form-control" id="lastname"
-                                 formControlName="lastname"
-                                 [class.is-invalid]="newPackageForm.controls.contact.controls.lastname?.touched && newPackageForm.controls.contact.controls.lastname?.invalid" />
-                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.lastname?.touched && newPackageForm.controls.contact.controls.lastname?.invalid">
-                            {{ newPackageForm.controls.contact.controls.lastname?.errors | errorMessages }}
-                          </div>
+                                 formControlName="lastname" />
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group">
                           <label for="telNo">Email</label>
                           <input type="text" class="form-control" id="email"
-                                 formControlName="email"
-                                 [class.is-invalid]="newPackageForm.controls.contact.controls.email?.touched &&newPackageForm.controls.contact.controls.email?.invalid" />
-                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.email?.touched &&newPackageForm.controls.contact.controls.email?.invalid">
-                            {{newPackageForm.controls.contact.controls.email?.errors | errorMessages }}
-                          </div>
-                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.email?.touched && newPackageForm.controls.contact.errors && newPackageForm.controls.contact.errors['telNoOrEmailRequired']">
-                            {{ newPackageForm.controls.contact.errors | errorMessages }}
-                          </div>
+                                 formControlName="email" />
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group">
                           <label for="telNo">Tel.no:</label>
                           <input type="text" class="form-control" id="telNo"
-                                 formControlName="telNo"
-                                 [class.is-invalid]="newPackageForm.controls.contact.controls.telNo?.touched && newPackageForm.controls.contact.controls.telNo?.invalid" />
-                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.telNo?.touched && newPackageForm.controls.contact.controls.telNo?.invalid">
-                            {{ newPackageForm.controls.contact.controls.telNo?.errors | errorMessages }}
-                          </div>
-                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.telNo?.touched && newPackageForm.controls.contact.errors && newPackageForm.controls.contact.errors['telNoOrEmailRequired']">
-                            {{ newPackageForm.controls.contact.errors | errorMessages }}
-                          </div>
+                                 formControlName="telNo" />
                         </div>
                       </div>
                     </div>
@@ -75,44 +53,28 @@
                         <div class="form-group">
                           <label for="street">Street:</label>
                           <input type="text" class="form-control" id="street"
-                                 formControlName="street"
-                                 [class.is-invalid]="newPackageForm.controls.address.controls.street?.touched && newPackageForm.controls.address.controls.street?.invalid" />
-                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.address.controls.street?.touched && newPackageForm.controls.address.controls.street?.invalid">
-                            {{ newPackageForm.controls.address.controls.street?.errors | errorMessages }}
-                          </div>
+                                 formControlName="street" />
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group">
                           <label for="city">Post code:</label>
                           <input type="text" class="form-control" id="postCode"
-                                 formControlName="postCode"
-                                 [class.is-invalid]="newPackageForm.controls.address.controls.postCode?.touched && newPackageForm.controls.address.controls.postCode?.invalid" />
-                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.address.controls.postCode?.touched && newPackageForm.controls.address.controls.postCode?.invalid">
-                            {{ newPackageForm.controls.address.controls.postCode?.errors | errorMessages }}
-                          </div>
+                                 formControlName="postCode" />
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group">
                           <label for="city">City:</label>
                           <input type="text" class="form-control" id="city"
-                                 formControlName="city"
-                                 [class.is-invalid]="newPackageForm.controls.address.controls.city?.touched && newPackageForm.controls.address.controls.city?.invalid" />
-                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.address.controls.city?.touched && newPackageForm.controls.address.controls.city?.invalid">
-                            {{ newPackageForm.controls.address.controls.city?.errors | errorMessages }}
-                          </div>
+                                 formControlName="city" />
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group">
                           <label for="city">Country:</label>
                           <input type="text" class="form-control" id="country"
-                                 formControlName="country"
-                                 [class.is-invalid]="newPackageForm.controls.address.controls.country?.touched && newPackageForm.controls.address.controls.country?.invalid" />
-                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.address.controls.country?.touched && newPackageForm.controls.address.controls.country?.invalid">
-                            {{ newPackageForm.controls.address.controls.country?.errors | errorMessages }}
-                          </div>
+                                 formControlName="country" />
                         </div>
                       </div>
                     </div>
