@@ -5,3 +5,8 @@ div.selected {
 div.focused {
   background-color: #376c6e;
 }
+
+:host(.form-control) {
+  background-image: unset;
+  margin-top: 10px;
+}

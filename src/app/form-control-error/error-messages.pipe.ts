@@ -23,5 +23,7 @@ export const validationMessages: { [key: string]: string } = {
   email: 'The email address is invalid',
   postCode: 'The post code is invalid',
   pattern: 'The format is incorrect',
-  telNoOrEmailRequired: 'Only email or phone is requeired'
+  telNoOrEmailRequired: 'Only email or phone is requeired',
+  priceTooBig: 'The price is too big',
+  servicesRequired: 'The service is required'
 };

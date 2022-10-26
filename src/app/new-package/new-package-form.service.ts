@@ -39,6 +39,9 @@ export class NewPackageFormService {
     form.controls.address.controls.city.setValidators(Validators.required);
     form.controls.address.controls.country.setValidators(Validators.required);
 
+    form.controls.services.setValidators(serviceRequired);
+    form.controls.services.updateValueAndValidity();
+
     form.controls.contact.controls.firstname.updateValueAndValidity();
     form.controls.contact.controls.lastname.updateValueAndValidity();
     form.controls.contact.controls.email.updateValueAndValidity();
@@ -51,6 +54,8 @@ export class NewPackageFormService {
 
   }
 }
+
+export const serviceRequired: ValidatorFn = (control: AbstractControl) => control.value?.length < 1 ? { servicesRequired: true } : null;
 
 export const tooShort = (minLength: number): ValidatorFn => (control: AbstractControl) => control.value.length < minLength ? { tooShort: true } : null;
 

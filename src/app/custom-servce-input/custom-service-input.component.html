@@ -5,7 +5,7 @@
     *ngFor="let service of availableServices"
     (click)="selectService(service)"
     (focus)="onFocus($event)"
-    (blur)="onBlur($event)"
+    (blur)="onBlur()"
     [ngClass]="{
       selected: isSelected(service),
       focused: focusedElement === item,

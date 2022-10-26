@@ -1,6 +1,13 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AvailabeService } from '../model/availabe-service';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  FormControl, NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validator
+} from '@angular/forms';
 
 @Component({
   selector: 'app-custom-service-input',
@@ -11,14 +18,21 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       provide: NG_VALUE_ACCESSOR,
       useExisting: CustomServiceInputComponent,
       multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: CustomServiceInputComponent,
+      multi: true
     }
   ]
 })
-export class CustomServiceInputComponent implements OnInit, ControlValueAccessor {
+export class CustomServiceInputComponent implements OnInit, ControlValueAccessor, Validator {
 
   @Input() availableServices: AvailabeService[] = [];
 
   @Input() tabindex: number = 0;
+
+  @Input() maxPrice: number = 15;
 
   // @ViewChild('item') item?: HTMLDivElement;
 
@@ -28,11 +42,14 @@ export class CustomServiceInputComponent implements OnInit, ControlValueAccessor
 
   private selectedServices: AvailabeService[] = [];
 
-  private onModelChange: Function = () => {};
+  private onModelChange: Function = () => {
+  };
 
-  private onModelTouched: Function = () => {};
+  private onModelTouched: Function = () => {
+  };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
@@ -52,6 +69,15 @@ export class CustomServiceInputComponent implements OnInit, ControlValueAccessor
 
   writeValue(services: AvailabeService[]): void {
     this.selectedServices = services;
+  }
+
+
+  validate(control: FormControl<AvailabeService[]>): ValidationErrors | null {
+    const sum = control.value
+      .map(as => as.price)
+      .reduce((sum: number, curr: number) => sum + curr, 0);
+
+    return sum > this.maxPrice ? { priceTooBig: true } : null;
   }
 
   selectService(service: AvailabeService): void {
@@ -82,7 +108,7 @@ export class CustomServiceInputComponent implements OnInit, ControlValueAccessor
     }
   }
 
-  onBlur() {
+  onBlur(): void {
     this.focusedElement = undefined;
     this.onModelTouched();
   }
