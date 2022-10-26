@@ -1,5 +1,25 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
+export type ControlsOf<T> = {
+  [K in keyof T]: T[K] extends string | number
+    ? FormControl<T[K]>
+    : FormGroup<ControlsOf<T[K]>>
+}
+
+export interface Contact {
+  firstname: string;
+  lastname: string;
+  telNo: string;
+  email: string;
+}
+
+export interface Address {
+  street: string;
+  postCode: string;
+  city: string;
+  country: string;
+}
+
 export interface ContactForm {
   firstname: FormControl<string>;
   lastname: FormControl<string>;
@@ -15,7 +35,7 @@ export interface AddressForm {
 }
 
 export interface NewPackageForm {
-  contact: FormGroup<ContactForm>;
-  address: FormGroup<AddressForm>;
+  contact: FormGroup<ControlsOf<Contact>>;
+  address: FormGroup<ControlsOf<Address>>;
   services: FormArray<FormControl<boolean>>
 }
