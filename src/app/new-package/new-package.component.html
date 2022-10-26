@@ -7,79 +7,11 @@
           <form id="newPostForm" *ngIf="newPackageForm" [formGroup]="newPackageForm" novalidate>
             <div class="row">
               <div class="col-6">
-                <div class="card">
-                  <div class="card-header">Contact</div>
-                  <div class="card-body" formGroupName="contact">
-                    <div>
-                      <div class="form-row">
-                        <div class="form-group">
-                          <label for="firstname">First name:</label>
-                          <input type="text" class="form-control" id="firstname"
-                                 formControlName="firstname" />
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-group">
-                          <label for="lastname">Last name:</label>
-                          <input type="text" class="form-control" id="lastname"
-                                 formControlName="lastname" />
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-group">
-                          <label for="telNo">Email</label>
-                          <input type="text" class="form-control" id="email"
-                                 formControlName="email" />
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-group">
-                          <label for="telNo">Tel.no:</label>
-                          <input type="text" class="form-control" id="telNo"
-                                 formControlName="telNo" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <app-contact-form [contactForm]="newPackageForm.controls.contact"></app-contact-form>
               </div>
 
               <div class="col-6">
-                <div class="card">
-                  <div class="card-header">Address</div>
-                  <div class="card-body" formGroupName="address">
-                    <div>
-                      <div class="form-row">
-                        <div class="form-group">
-                          <label for="street">Street:</label>
-                          <input type="text" class="form-control" id="street"
-                                 formControlName="street" />
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-group">
-                          <label for="city">Post code:</label>
-                          <input type="text" class="form-control" id="postCode"
-                                 formControlName="postCode" />
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-group">
-                          <label for="city">City:</label>
-                          <input type="text" class="form-control" id="city"
-                                 formControlName="city" />
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-group">
-                          <label for="city">Country:</label>
-                          <input type="text" class="form-control" id="country"
-                                 formControlName="country" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <app-address-form [addressForm]="newPackageForm.controls.address"></app-address-form>
               </div>
             </div>
 

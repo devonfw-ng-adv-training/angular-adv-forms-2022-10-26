@@ -9,6 +9,8 @@ import { ErrorMessagesPipe } from './form-control-error/error-messages.pipe';
 import { FormControlErrorDirective } from './form-control-error/form-control-error.directive';
 import { FormControlErrorComponent } from './form-control-error/form-control-error.component';
 import { CustomServiceInputComponent } from './custom-servce-input/custom-service-input.component';
+import { ContactFormComponent } from './new-package/contact-form/contact-form.component';
+import { AddressFormComponent } from './new-package/address-form/address-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { CustomServiceInputComponent } from './custom-servce-input/custom-servic
     ErrorMessagesPipe,
     FormControlErrorDirective,
     FormControlErrorComponent,
-    CustomServiceInputComponent
+    CustomServiceInputComponent,
+    ContactFormComponent,
+    AddressFormComponent
   ],
   imports: [
     BrowserModule,

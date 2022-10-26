@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">Address</div>
+  <div class="card-body" [formGroup]="addressForm">
+    <div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="street">Street:</label>
+          <input type="text" class="form-control" id="street"
+                 formControlName="street" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">Post code:</label>
+          <input type="text" class="form-control" id="postCode"
+                 formControlName="postCode" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">City:</label>
+          <input type="text" class="form-control" id="city"
+                 formControlName="city" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">Country:</label>
+          <input type="text" class="form-control" id="country"
+                 formControlName="country" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
