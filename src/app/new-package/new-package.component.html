@@ -6,12 +6,12 @@
         <div class="card-body">
           <form id="newPostForm" *ngIf="newPackageForm" [formGroup]="newPackageForm" novalidate>
             <div class="row">
-              <div class="col-6">
-                <app-contact-form [contactForm]="newPackageForm.controls.contact"></app-contact-form>
+              <div class="col-6" [formGroup]="newPackageForm.controls.contact">
+                <app-contact-form></app-contact-form>
               </div>
 
               <div class="col-6">
-                <app-address-form [addressForm]="newPackageForm.controls.address"></app-address-form>
+                <app-address-form formGroupName="address"></app-address-form>
               </div>
             </div>
 
