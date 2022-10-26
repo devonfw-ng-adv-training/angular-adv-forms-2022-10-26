@@ -95,7 +95,14 @@
 <!--            </div>-->
 
             <div class="form-row">
-              <app-custom-service-input class="form-control" [availableServices]="availableServices" formControlName="services"></app-custom-service-input>
+              <app-custom-service-input class="form-control" [availableServices]="availableServices" [itemTemplate]="itemTemplate" formControlName="services">
+                <ng-template #itemTemplate let-service="service">
+                  <div>
+                    {{ service.name }}
+                    <span class="badge rounded-pill text-bg-light ms-1">{{ service.price }} PLN</span>
+                  </div>
+                </ng-template>
+              </app-custom-service-input>
             </div>
           </form>
         </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AvailabeService } from '../model/availabe-service';
 import {
   AbstractControl,
@@ -33,6 +33,8 @@ export class CustomServiceInputComponent implements OnInit, ControlValueAccessor
   @Input() tabindex: number = 0;
 
   @Input() maxPrice: number = 15;
+
+  @Input() itemTemplate?: TemplateRef<any>;
 
   // @ViewChild('item') item?: HTMLDivElement;
 
