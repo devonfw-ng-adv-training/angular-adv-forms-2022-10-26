@@ -1,111 +1,160 @@
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-9">
-            <div class="card">
-                <div class="card-header">New package</div>
-                <div class="card-body">
-                    <form id="newPostForm" [formGroup]="newPackageForm" novalidate>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-header">Contact</div>
-                                    <div class="card-body" formGroupName="contact">
-                                        <div>
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="firstname">First name:</label>
-                                                    <input type="text" class="form-control" id="firstname" formControlName="firstname" />
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="lastname">Last name:</label>
-                                                    <input type="text" class="form-control" id="lastname" formControlName="lastname" />
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="telNo">Email</label>
-                                                    <input type="text" class="form-control" id="email" formControlName="email" />
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="telNo">Tel.no:</label>
-                                                    <input type="text" class="form-control" id="telNo" formControlName="telNo" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-header">Address</div>
-                                    <div class="card-body">
-                                        <div formGroupName="address">
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="street">Street:</label>
-                                                    <input type="text" class="form-control" id="street" formControlName="street" />
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="city">Post code:</label>
-                                                    <input type="text" class="form-control" id="postCode" formControlName="postCode" />
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="city">City:</label>
-                                                    <input type="text" class="form-control" id="city" formControlName="city" />
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="city">Country:</label>
-                                                    <input type="text" class="form-control" id="country" formControlName="country" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-3" formArrayName="services">
-                            <div class="form-check" name="services" *ngFor="let serviceCtrl of newPackageForm.controls.services.controls; let i = index;">
-                                <input type="checkbox" class="form-check-input" id="services-{{ i }}" name="services"
-                                    [formControl]="serviceCtrl" />
-                                <label class="form-check-label" for="services-{{ i }}">
-                                    {{ availableServices[i].name }} {{ availableServices[i].price }} PLN
-                                </label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="card-footer bg-transparent text-end mt-4">
-                    <button type="submit" form="newPostForm" class="btn btn-primary me-1">Submit</button>
-                    <button type="reset" form="newPostForm" class="btn btn-secondary">Reset</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  <div class="row justify-content-center my-5">
+  <div class="row justify-content-center">
     <div class="col-9">
-      <h3>Debugger</h3>
-      <div class="row">
-        <div class="col-3 text-muted">form.value</div>
-        <div class="col-3">{{ newPackageForm.value | json }}</div>
+      <div class="card">
+        <div class="card-header">New package</div>
+        <div class="card-body">
+          <form id="newPostForm" *ngIf="newPackageForm" [formGroup]="newPackageForm" novalidate>
+            <div class="row">
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-header">Contact</div>
+                  <div class="card-body" formGroupName="contact">
+                    <div>
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label for="firstname">First name:</label>
+                          <input type="text" class="form-control" id="firstname"
+                                 formControlName="firstname"
+                                 [class.is-invalid]="newPackageForm.controls.contact.controls.firstname.touched && newPackageForm.controls.contact.controls.firstname?.invalid" />
+                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.firstname?.touched && newPackageForm.controls.contact.controls.firstname?.invalid">
+                            {{ newPackageForm.controls.contact.controls.firstname?.errors | errorMessages }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label for="lastname">Last name:</label>
+                          <input type="text" class="form-control" id="lastname"
+                                 formControlName="lastname"
+                                 [class.is-invalid]="newPackageForm.controls.contact.controls.lastname?.touched && newPackageForm.controls.contact.controls.lastname?.invalid" />
+                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.lastname?.touched && newPackageForm.controls.contact.controls.lastname?.invalid">
+                            {{ newPackageForm.controls.contact.controls.lastname?.errors | errorMessages }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label for="telNo">Email</label>
+                          <input type="text" class="form-control" id="email"
+                                 formControlName="email"
+                                 [class.is-invalid]="newPackageForm.controls.contact.controls.email?.touched &&newPackageForm.controls.contact.controls.email?.invalid" />
+                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.email?.touched &&newPackageForm.controls.contact.controls.email?.invalid">
+                            {{newPackageForm.controls.contact.controls.email?.errors | errorMessages }}
+                          </div>
+                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.email?.touched && newPackageForm.controls.contact.errors && newPackageForm.controls.contact.errors['telNoOrEmailRequired']">
+                            {{ newPackageForm.controls.contact.errors | errorMessages }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label for="telNo">Tel.no:</label>
+                          <input type="text" class="form-control" id="telNo"
+                                 formControlName="telNo"
+                                 [class.is-invalid]="newPackageForm.controls.contact.controls.telNo?.touched && newPackageForm.controls.contact.controls.telNo?.invalid" />
+                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.telNo?.touched && newPackageForm.controls.contact.controls.telNo?.invalid">
+                            {{ newPackageForm.controls.contact.controls.telNo?.errors | errorMessages }}
+                          </div>
+                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.contact.controls.telNo?.touched && newPackageForm.controls.contact.errors && newPackageForm.controls.contact.errors['telNoOrEmailRequired']">
+                            {{ newPackageForm.controls.contact.errors | errorMessages }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-header">Address</div>
+                  <div class="card-body" formGroupName="address">
+                    <div>
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label for="street">Street:</label>
+                          <input type="text" class="form-control" id="street"
+                                 formControlName="street"
+                                 [class.is-invalid]="newPackageForm.controls.address.controls.street?.touched && newPackageForm.controls.address.controls.street?.invalid" />
+                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.address.controls.street?.touched && newPackageForm.controls.address.controls.street?.invalid">
+                            {{ newPackageForm.controls.address.controls.street?.errors | errorMessages }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label for="city">Post code:</label>
+                          <input type="text" class="form-control" id="postCode"
+                                 formControlName="postCode"
+                                 [class.is-invalid]="newPackageForm.controls.address.controls.postCode?.touched && newPackageForm.controls.address.controls.postCode?.invalid" />
+                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.address.controls.postCode?.touched && newPackageForm.controls.address.controls.postCode?.invalid">
+                            {{ newPackageForm.controls.address.controls.postCode?.errors | errorMessages }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label for="city">City:</label>
+                          <input type="text" class="form-control" id="city"
+                                 formControlName="city"
+                                 [class.is-invalid]="newPackageForm.controls.address.controls.city?.touched && newPackageForm.controls.address.controls.city?.invalid" />
+                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.address.controls.city?.touched && newPackageForm.controls.address.controls.city?.invalid">
+                            {{ newPackageForm.controls.address.controls.city?.errors | errorMessages }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label for="city">Country:</label>
+                          <input type="text" class="form-control" id="country"
+                                 formControlName="country"
+                                 [class.is-invalid]="newPackageForm.controls.address.controls.country?.touched && newPackageForm.controls.address.controls.country?.invalid" />
+                          <div class="invalid-feedback" *ngIf="newPackageForm.controls.address.controls.country?.touched && newPackageForm.controls.address.controls.country?.invalid">
+                            {{ newPackageForm.controls.address.controls.country?.errors | errorMessages }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3" formArrayName="services" *ngIf="availableServices">
+              <div class="form-check" name="services"
+                   *ngFor="let serviceCtrl of newPackageForm.controls.services.controls; let i = index;">
+                <input type="checkbox" class="form-check-input" id="services-{{ i }}" name="services"
+                       [value]="availableServices[i].name" [formControl]="serviceCtrl" />
+                <label class="form-check-label" for="services-{{ i }}">
+                  {{ availableServices[i].name }} {{ availableServices[i].price }} PLN
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="card-footer bg-transparent text-end mt-4">
+          <button type="submit" form="newPostForm" class="btn btn-primary me-1"
+                  [disabled]="newPackageForm.invalid">Submit</button>
+          <button type="reset" form="newPostForm" class="btn btn-secondary"
+                  (click)="newPackageForm.reset()">Reset</button>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="text-center my-5">
+    <h3>Debugger</h3>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-5 text-end text-muted">Form Value form.value():</div>
+    <div class="col-6">{{ newPackageForm.value | json }}</div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-5 text-end text-muted">newPackageForm.controls.contact.erorrs</div>
+    <div class="col-6">{{ newPackageForm.controls.contact.errors | json }}</div>
+  </div>
 </div>
-
-
-
-

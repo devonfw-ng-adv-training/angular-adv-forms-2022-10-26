@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AvailabeService } from '../model/availabe-service';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, FormControl, UntypedFormBuilder, FormArray, } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  UntypedFormBuilder,
+  FormArray,
+  Validators,
+  ValidatorFn, AbstractControl,
+} from '@angular/forms';
 import { AddressForm, ContactForm, NewPackageForm } from '../model/new-package-types';
 
 @Component({
@@ -25,17 +33,19 @@ export class NewPackageComponent implements OnInit {
     this.availableServices = this.activatedRoute.snapshot.data['services'];
 
     const contact = new FormGroup<ContactForm>({
-      firstname: new FormControl('', { nonNullable: true }),
-      lastname: new FormControl('', { nonNullable: true }),
-      telNo: new FormControl('', { nonNullable: true }),
-      email: new FormControl('', { nonNullable: true })
+      firstname: new FormControl('', { nonNullable: true, validators: [Validators.required, tooShort(3)] }),
+      lastname: new FormControl('', { nonNullable: true, validators: [Validators.required, tooShort(3)] }),
+      telNo: new FormControl('', { nonNullable: true, validators: [Validators.pattern(/^\+?[1-9][0-9]{7,14}$/)] }),
+      email: new FormControl('', { nonNullable: true, validators: [Validators.email] })
+    }, {
+      validators: telNoOrEmailRequired
     });
 
     const address = new FormGroup<AddressForm>({
-      street: new FormControl('', { nonNullable: true }),
-      postCode: new FormControl('', { nonNullable: true }),
-      city: new FormControl('', { nonNullable: true }),
-      country: new FormControl('', { nonNullable: true }),
+      street: new FormControl('', { nonNullable: true, validators: Validators.required }),
+      postCode: new FormControl('', { nonNullable: true, validators: [Validators.required, postCode] }),
+      city: new FormControl('', { nonNullable: true, validators: Validators.required }),
+      country: new FormControl('', { nonNullable: true, validators: Validators.required }),
     });
 
     this.newPackageForm = new FormGroup<NewPackageForm>({
@@ -80,3 +90,35 @@ export class NewPackageComponent implements OnInit {
   }
 
 }
+
+export const tooShort = (minLength: number): ValidatorFn => (control: AbstractControl) => control.value.length < minLength ? { tooShort: true } : null;
+
+export const postCode: ValidatorFn = (control: AbstractControl) => {
+  const [first, second] = control.value.split('-');
+
+  return first?.length !== 2 || second?.length !== 3 ? { postCode: true } : null;
+};
+
+
+// export const telNoOrEmailRequired: ValidatorFn = ((contactForm: FormGroup<ContactForm>) => {
+//   return contactForm.controls.telNo.value && contactForm.controls.email.value
+//     || !contactForm.controls.telNo.value && !contactForm.controls.email.value
+//   ? { telNoOrEmailRequired: true }
+//   : null;
+// }) as ValidatorFn;
+
+export const telNoOrEmailRequired: ValidatorFn = (control: AbstractControl) => {
+  const telNoCtrl = control.get('telNo');
+  const emailCtrl = control.get('email');
+
+  if (telNoCtrl && emailCtrl) {
+    return telNoCtrl.value && emailCtrl.value
+    || !telNoCtrl.value && !emailCtrl.value
+      ? { telNoOrEmailRequired: true }
+      : null;
+  }
+
+  return null;
+};
+
+
