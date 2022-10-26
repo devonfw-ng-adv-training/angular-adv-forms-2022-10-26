@@ -48,6 +48,8 @@ export class FormControlErrorDirective implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+
+    this.removeErrorComponent();
   }
 
   private addErrorComponent(): void {
