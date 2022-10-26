@@ -25,5 +25,6 @@ export const validationMessages: { [key: string]: string } = {
   pattern: 'The format is incorrect',
   telNoOrEmailRequired: 'Only email or phone is requeired',
   priceTooBig: 'The price is too big',
-  servicesRequired: 'The service is required'
+  servicesRequired: 'The service is required',
+  addressInvalid: 'The adress is invalid'
 };

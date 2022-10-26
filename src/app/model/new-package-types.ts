@@ -1,4 +1,4 @@
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { AvailabeService } from './availabe-service';
 
 export type ControlsOf<T> = {
@@ -37,6 +37,6 @@ export interface AddressForm {
 
 export interface NewPackageForm {
   contact: FormGroup<ControlsOf<Contact>>;
-  address: FormGroup<ControlsOf<Address>>;
+  address: FormControl<Address>;
   services: FormControl<AvailabeService[]>
 }

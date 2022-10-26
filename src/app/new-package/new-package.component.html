@@ -11,7 +11,7 @@
               </div>
 
               <div class="col-6">
-                <app-address-form formGroupName="address"></app-address-form>
+                <app-address-form class="form-control" formControlName="address"></app-address-form>
               </div>
             </div>
 
@@ -61,5 +61,10 @@
   <div class="row justify-content-center">
     <div class="col-5 text-end text-muted">newPackageForm.controls.contact.erorrs</div>
     <div class="col-6">{{ newPackageForm.controls.contact.errors | json }}</div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-5 text-end text-muted">newPackageForm.controls.address.erorrs</div>
+    <div class="col-6">{{ newPackageForm.controls.address.errors | json }}</div>
   </div>
 </div>

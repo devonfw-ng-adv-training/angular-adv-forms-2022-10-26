@@ -1,10 +1,29 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { AddressForm, ContactForm, NewPackageForm } from '../model/new-package-types';
+import { Address, AddressForm, ContactForm, NewPackageForm } from '../model/new-package-types';
 import { AvailabeService } from '../model/availabe-service';
 
 @Injectable()
 export class NewPackageFormService {
+
+  prepareAddressForm(): FormGroup<AddressForm> {
+    return new FormGroup<AddressForm>({
+      street: new FormControl('', { nonNullable: true, validators: Validators.required }),
+      postCode: new FormControl('', { nonNullable: true, validators: [Validators.required, postCode] }),
+      city: new FormControl('', { nonNullable: true, validators: Validators.required }),
+      country: new FormControl('', { nonNullable: true, validators: Validators.required }),
+    });
+
+    // form.controls.street.setValidators(Validators.required);
+    // form.controls.postCode.setValidators([Validators.required, postCode]);
+    // form.controls.city.setValidators(Validators.required);
+    // form.controls.country.setValidators(Validators.required);
+    //
+    // form.controls.street.updateValueAndValidity();
+    // form.controls.postCode.updateValueAndValidity();
+    // form.controls.city.updateValueAndValidity();
+    // form.controls.country.updateValueAndValidity();
+  }
 
   prepareForm(): FormGroup<NewPackageForm> {
     const contact = new FormGroup<ContactForm>({
@@ -14,16 +33,14 @@ export class NewPackageFormService {
       email: new FormControl('', { nonNullable: true })
     });
 
-    const address = new FormGroup<AddressForm>({
-      street: new FormControl('', { nonNullable: true }),
-      postCode: new FormControl('', { nonNullable: true }),
-      city: new FormControl('', { nonNullable: true }),
-      country: new FormControl('', { nonNullable: true }),
-    });
-
     return new FormGroup<NewPackageForm>({
       contact,
-      address,
+      address: new FormControl<Address>({
+        street: '',
+        postCode: '',
+        city: '',
+        country: ''
+      }, { nonNullable: true }),
       services: new FormControl<AvailabeService[]>([], { nonNullable: true })
     });
   }
@@ -34,11 +51,6 @@ export class NewPackageFormService {
     form.controls.contact.controls.email.setValidators([Validators.pattern(/^\+?[1-9][0-9]{7,14}$/)]);
     form.controls.contact.controls.telNo.setValidators(Validators.email);
 
-    form.controls.address.controls.street.setValidators(Validators.required);
-    form.controls.address.controls.postCode.setValidators([Validators.required, postCode]);
-    form.controls.address.controls.city.setValidators(Validators.required);
-    form.controls.address.controls.country.setValidators(Validators.required);
-
     form.controls.services.setValidators(serviceRequired);
     form.controls.services.updateValueAndValidity();
 
@@ -46,11 +58,6 @@ export class NewPackageFormService {
     form.controls.contact.controls.lastname.updateValueAndValidity();
     form.controls.contact.controls.email.updateValueAndValidity();
     form.controls.contact.controls.telNo.updateValueAndValidity();
-
-    form.controls.address.controls.street.updateValueAndValidity();
-    form.controls.address.controls.postCode.updateValueAndValidity();
-    form.controls.address.controls.city.updateValueAndValidity();
-    form.controls.address.controls.country.updateValueAndValidity();
 
   }
 }
