@@ -76,25 +76,11 @@
                         </div>
 
                         <div class="mt-3">
-                            <div class="form-check" name="services">
-                                <input type="checkbox" class="form-check-input" id="services-1" name="services"
-                                    value="Priority" />
-                                <label class="form-check-label" for="services">
-                                    Priority 6PLN
-                                </label>
-                            </div>
-                            <div class="form-check" name="services">
-                                <input type="checkbox" class="form-check-input" id="services-1" name="services"
-                                    value="Priority" />
-                                <label class="form-check-label" for="services">
-                                    Registered 7PLN
-                                </label>
-                            </div>
-                            <div class="form-check" name="services">
-                                <input type="checkbox" class="form-check-input" id="services-1" name="services"
-                                    value="Priority" />
-                                <label class="form-check-label" for="services">
-                                    Sign required 3PLN
+                            <div class="form-check" name="services" *ngFor="let service of availableServices; let i = index;">
+                                <input type="checkbox" class="form-check-input" id="services-{{ i }}" name="services"
+                                    [value]="service.name" />
+                                <label class="form-check-label" for="services-{{ i }}">
+                                    {{ service.name }} {{ service.price }} PLN
                                 </label>
                             </div>
                         </div>
