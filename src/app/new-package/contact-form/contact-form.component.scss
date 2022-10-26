@@ -1,0 +1,10 @@
+:host(.form-control) {
+  background-image: unset;
+  border-color: transparent;
+  margin: 0;
+  padding: 0;
+
+  &.is-invalid {
+    border-color: #dc3545;
+  }
+}

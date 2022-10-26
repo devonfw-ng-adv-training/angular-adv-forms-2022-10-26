@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Address, AddressForm, ContactForm, NewPackageForm } from '../model/new-package-types';
+import { Address, AddressForm, Contact, ContactForm, NewPackageForm } from '../model/new-package-types';
 import { AvailabeService } from '../model/availabe-service';
 
 @Injectable()
 export class NewPackageFormService {
+
+  prepareContactForm(): FormGroup<ContactForm> {
+    return new FormGroup<ContactForm>({
+      firstname: new FormControl('', { nonNullable: true, validators: [Validators.required, tooShort(3)] }),
+      lastname: new FormControl('', { nonNullable: true, validators: [Validators.required, tooShort(3)] }),
+      telNo: new FormControl('', { nonNullable: true, validators: [Validators.pattern(/^\+?[1-9][0-9]{7,14}$/)] }),
+      email: new FormControl('', { nonNullable: true, validators: Validators.email })
+    });
+  }
 
   prepareAddressForm(): FormGroup<AddressForm> {
     return new FormGroup<AddressForm>({
@@ -26,15 +35,13 @@ export class NewPackageFormService {
   }
 
   prepareForm(): FormGroup<NewPackageForm> {
-    const contact = new FormGroup<ContactForm>({
-      firstname: new FormControl('', { nonNullable: true }),
-      lastname: new FormControl('', { nonNullable: true }),
-      telNo: new FormControl('', { nonNullable: true }),
-      email: new FormControl('', { nonNullable: true })
-    });
-
     return new FormGroup<NewPackageForm>({
-      contact,
+      contact: new FormControl<Contact>({
+        firstname: '',
+        lastname: '',
+        email: '',
+        telNo: ''
+      }, { nonNullable: true }),
       address: new FormControl<Address>({
         street: '',
         postCode: '',
@@ -46,19 +53,8 @@ export class NewPackageFormService {
   }
 
   setValidators(form: FormGroup<NewPackageForm>): void {
-    form.controls.contact.controls.firstname.setValidators([Validators.required, tooShort(3)]);
-    form.controls.contact.controls.lastname.setValidators([Validators.required, tooShort(3)]);
-    form.controls.contact.controls.email.setValidators([Validators.pattern(/^\+?[1-9][0-9]{7,14}$/)]);
-    form.controls.contact.controls.telNo.setValidators(Validators.email);
-
     form.controls.services.setValidators(serviceRequired);
     form.controls.services.updateValueAndValidity();
-
-    form.controls.contact.controls.firstname.updateValueAndValidity();
-    form.controls.contact.controls.lastname.updateValueAndValidity();
-    form.controls.contact.controls.email.updateValueAndValidity();
-    form.controls.contact.controls.telNo.updateValueAndValidity();
-
   }
 }
 

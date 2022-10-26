@@ -6,8 +6,8 @@
         <div class="card-body">
           <form id="newPostForm" *ngIf="newPackageForm" [formGroup]="newPackageForm" novalidate>
             <div class="row">
-              <div class="col-6" [formGroup]="newPackageForm.controls.contact">
-                <app-contact-form></app-contact-form>
+              <div class="col-6">
+                <app-contact-form  class="form-control" formControlName="contact"></app-contact-form>
               </div>
 
               <div class="col-6">
@@ -49,22 +49,22 @@
     </div>
   </div>
 
-  <div class="text-center my-5">
-    <h3>Debugger</h3>
-  </div>
+<!--  <div class="text-center my-5">-->
+<!--    <h3>Debugger</h3>-->
+<!--  </div>-->
 
-  <div class="row justify-content-center">
-    <div class="col-5 text-end text-muted">Form Value form.value():</div>
-    <div class="col-6">{{ newPackageForm.value | json }}</div>
-  </div>
+<!--  <div class="row justify-content-center">-->
+<!--    <div class="col-5 text-end text-muted">Form Value form.value():</div>-->
+<!--    <div class="col-6">{{ newPackageForm.value | json }}</div>-->
+<!--  </div>-->
 
-  <div class="row justify-content-center">
-    <div class="col-5 text-end text-muted">newPackageForm.controls.contact.erorrs</div>
-    <div class="col-6">{{ newPackageForm.controls.contact.errors | json }}</div>
-  </div>
+<!--  <div class="row justify-content-center">-->
+<!--    <div class="col-5 text-end text-muted">newPackageForm.controls.contact.erorrs</div>-->
+<!--    <div class="col-6">{{ newPackageForm.controls.contact.errors | json }}</div>-->
+<!--  </div>-->
 
-  <div class="row justify-content-center">
-    <div class="col-5 text-end text-muted">newPackageForm.controls.address.erorrs</div>
-    <div class="col-6">{{ newPackageForm.controls.address.errors | json }}</div>
-  </div>
+<!--  <div class="row justify-content-center">-->
+<!--    <div class="col-5 text-end text-muted">newPackageForm.controls.address.erorrs</div>-->
+<!--    <div class="col-6">{{ newPackageForm.controls.address.errors | json }}</div>-->
+<!--  </div>-->
 </div>

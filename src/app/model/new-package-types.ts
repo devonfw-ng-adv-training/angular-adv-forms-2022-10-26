@@ -36,7 +36,7 @@ export interface AddressForm {
 }
 
 export interface NewPackageForm {
-  contact: FormGroup<ControlsOf<Contact>>;
+  contact: FormControl<Contact>;
   address: FormControl<Address>;
   services: FormControl<AvailabeService[]>
 }

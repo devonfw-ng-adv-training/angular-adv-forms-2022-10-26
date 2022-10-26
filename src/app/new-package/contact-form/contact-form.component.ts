@@ -1,20 +1,27 @@
-import { Component, Input } from '@angular/core';
-import { ControlContainer, FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
-import { ContactForm } from '../../model/new-package-types';
+import { Component } from '@angular/core';
+import { FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AddressForm, ContactForm } from '../../model/new-package-types';
+import { AbstractNestedFormInputComponent } from '../../shared/abstract-nested-form-input.component';
 
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],
-  providers: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: ContactFormComponent,
+      multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: ContactFormComponent,
+      multi: true
+    }
+  ]
 })
-export class ContactFormComponent {
+export class ContactFormComponent extends AbstractNestedFormInputComponent {
 
-  constructor(private readonly controlContainer: ControlContainer) {
-  }
-
-  get contactForm(): FormGroup<ContactForm> {
-    return this.controlContainer.control as FormGroup<ContactForm>;
-  }
-
+  override nestedForm: FormGroup<ContactForm> = this.newPackageFormService.prepareContactForm();
+  override errorKey = 'contactInvalid';
 }

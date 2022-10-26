@@ -11,6 +11,7 @@ import { FormControlErrorComponent } from './form-control-error/form-control-err
 import { CustomServiceInputComponent } from './custom-servce-input/custom-service-input.component';
 import { ContactFormComponent } from './new-package/contact-form/contact-form.component';
 import { AddressFormComponent } from './new-package/address-form/address-form.component';
+import { AbstractNestedFormInputComponent } from './shared/abstract-nested-form-input.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AddressFormComponent } from './new-package/address-form/address-form.co
     FormControlErrorComponent,
     CustomServiceInputComponent,
     ContactFormComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    AbstractNestedFormInputComponent
   ],
   imports: [
     BrowserModule,
