@@ -1,4 +1,5 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { AvailabeService } from './availabe-service';
 
 export type ControlsOf<T> = {
   [K in keyof T]: T[K] extends string | number
@@ -37,5 +38,5 @@ export interface AddressForm {
 export interface NewPackageForm {
   contact: FormGroup<ControlsOf<Contact>>;
   address: FormGroup<ControlsOf<Address>>;
-  services: FormArray<FormControl<boolean>>
+  services: FormControl<AvailabeService[]>
 }

@@ -1,0 +1,19 @@
+<div class="btn-group my-3" role="group">
+  <div
+    #item
+    class="btn btn-secondary m-1"
+    *ngFor="let service of availableServices"
+    (click)="selectService(service)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    [ngClass]="{
+      selected: isSelected(service),
+      focused: focusedElement === item,
+      disabled: disabled
+    }
+    "
+    [attr.tabindex]="tabindex"
+  >
+    {{ service.name }} {{ service.price }} PLN
+  </div>
+</div>

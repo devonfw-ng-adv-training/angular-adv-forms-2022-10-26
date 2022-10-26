@@ -16,8 +16,8 @@ export class AvailableServicesResolver implements Resolve<AvailabeService[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<AvailabeService[]> {
     return of([
       { id: 1, name: 'Priority', price: 5 },
-      { id: 1, name: 'Registered', price: 7 },
-      { id: 1, name: 'Sign required', price: 11 },
+      { id: 2, name: 'Registered', price: 7 },
+      { id: 3, name: 'Sign required', price: 11 },
     ]);
   }
 

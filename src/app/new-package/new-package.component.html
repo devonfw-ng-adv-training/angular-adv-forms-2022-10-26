@@ -83,15 +83,19 @@
               </div>
             </div>
 
-            <div class="mt-3" formArrayName="services" *ngIf="availableServices">
-              <div class="form-check" name="services"
-                   *ngFor="let serviceCtrl of newPackageForm.controls.services.controls; let i = index;">
-                <input type="checkbox" class="form-check-input" id="services-{{ i }}" name="services"
-                       [value]="availableServices[i].name" [formControl]="serviceCtrl" />
-                <label class="form-check-label" for="services-{{ i }}">
-                  {{ availableServices[i].name }} {{ availableServices[i].price }} PLN
-                </label>
-              </div>
+<!--            <div class="mt-3" formArrayName="services" *ngIf="availableServices">-->
+<!--              <div class="form-check" name="services"-->
+<!--                   *ngFor="let serviceCtrl of newPackageForm.controls.services.controls; let i = index;">-->
+<!--                <input type="checkbox" class="form-check-input" id="services-{{ i }}" name="services"-->
+<!--                       [value]="availableServices[i].name" [formControl]="serviceCtrl" />-->
+<!--                <label class="form-check-label" for="services-{{ i }}">-->
+<!--                  {{ availableServices[i].name }} {{ availableServices[i].price }} PLN-->
+<!--                </label>-->
+<!--              </div>-->
+<!--            </div>-->
+
+            <div class="row">
+              <app-custom-service-input [availableServices]="availableServices" formControlName="services"></app-custom-service-input>
             </div>
           </form>
         </div>

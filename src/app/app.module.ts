@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorMessagesPipe } from './form-control-error/error-messages.pipe';
 import { FormControlErrorDirective } from './form-control-error/form-control-error.directive';
 import { FormControlErrorComponent } from './form-control-error/form-control-error.component';
+import { CustomServiceInputComponent } from './custom-servce-input/custom-service-input.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormControlErrorComponent } from './form-control-error/form-control-err
     NewPackageComponent,
     ErrorMessagesPipe,
     FormControlErrorDirective,
-    FormControlErrorComponent
+    FormControlErrorComponent,
+    CustomServiceInputComponent
   ],
   imports: [
     BrowserModule,

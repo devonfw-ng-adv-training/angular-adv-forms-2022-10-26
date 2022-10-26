@@ -24,7 +24,7 @@ export class NewPackageFormService {
     return new FormGroup<NewPackageForm>({
       contact,
       address,
-      services: new FormArray<FormControl<boolean>>([])
+      services: new FormControl<AvailabeService[]>([], { nonNullable: true })
     });
   }
 
@@ -48,14 +48,6 @@ export class NewPackageFormService {
     form.controls.address.controls.postCode.updateValueAndValidity();
     form.controls.address.controls.city.updateValueAndValidity();
     form.controls.address.controls.country.updateValueAndValidity();
-
-  }
-
-  createAvailableServicesCtrls(form: FormGroup<NewPackageForm>, availableServices: AvailabeService[]): void {
-    form.controls.services.clear();
-    availableServices.forEach(s => {
-      form.controls.services.push(new FormControl<boolean>(false, { nonNullable: true }));
-    });
 
   }
 }

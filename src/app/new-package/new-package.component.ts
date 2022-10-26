@@ -31,12 +31,13 @@ export class NewPackageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.newPackageFormService.setValidators(this.newPackageForm);
 
+    // this.newPackageForm.controls.services.disable();
+
     this.subscription.add(this.activatedRoute.data
       .pipe(map(d => d['services']))
       .subscribe({
         next: availableServices => {
           this.availableServices = availableServices;
-          this.newPackageFormService.createAvailableServicesCtrls(this.newPackageForm, availableServices);
         }
       }))
   }
